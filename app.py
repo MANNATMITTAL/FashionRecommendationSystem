@@ -323,9 +323,9 @@ else:
                         st.markdown("---")            
     
     # ---------------- LOAD IMAGE FEATURES ----------------
-    #df = pd.read_pickle("models/image_features.pkl")
-    #image_paths = list(df["image_path"])
-    image_paths = "images/image"
+    df = pd.read_pickle("models/image_features.pkl")
+    image_paths = list(df["image_path"])
+    #image_paths = "images/image"
 
     # ---------------- FILTERS ----------------
     if category_filter != "All":
