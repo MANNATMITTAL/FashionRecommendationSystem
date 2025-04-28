@@ -379,8 +379,8 @@ else:
                     st.session_state.selected_index = start + i
                 st.image(path, use_column_width=True)
                 
-           else:
-               st.warning(f"Image not found: {image_path}")
+            else:
+                st.warning(f"Image not found: {image_path}")
 
 
 # ---------------- HIDE WARNINGS ----------------
