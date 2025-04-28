@@ -380,7 +380,7 @@ else:
                 st.image(path, use_column_width=True)
                 
             else:
-                st.warning(f"Image not found: {image_path}")
+                st.warning(f"Image not found: {path}")
 
 
 # ---------------- HIDE WARNINGS ----------------
