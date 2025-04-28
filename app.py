@@ -324,6 +324,7 @@ else:
     # ---------------- LOAD IMAGE FEATURES ----------------
     df = pd.read_pickle("models/image_features.pkl")
     image_paths = list(df["image_path"])
+   
     #image_paths = "images/image"
 
     # ---------------- FILTERS ----------------
@@ -377,7 +378,9 @@ else:
                 if st.button("Select", key=f"select_{start+i}"):
                     st.session_state.selected_index = start + i
                 st.image(path, use_column_width=True)
-
+                
+           else:
+               st.warning(f"Image not found: {image_path}")
 
 
 # ---------------- HIDE WARNINGS ----------------
