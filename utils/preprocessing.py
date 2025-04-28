@@ -1,6 +1,10 @@
-import cv2
+from PIL import Image
+import numpy as np
 
 def preprocess_image(img):
-    img = cv2.resize(img, (224, 224))
-    img = img / 255.0
+    if not isinstance(img, Image.Image):
+        img = Image.fromarray(img)
+    img = img.resize((224, 224))
+    img = np.array(img) / 255.0
     return img
+
