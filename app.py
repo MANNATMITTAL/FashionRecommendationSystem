@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import cv2
 import os
 import json
 import random
@@ -345,8 +344,10 @@ else:
     if uploaded_file:
         st.image(uploaded_file, caption="Uploaded Image", width=200)
         bytes_data = uploaded_file.read()
-        img_arr = np.frombuffer(bytes_data, np.uint8)
-        img = cv2.imdecode(img_arr, cv2.IMREAD_COLOR)
+        #img_arr = np.frombuffer(bytes_data, np.uint8)
+        #img = cv2.imdecode(img_arr, cv2.IMREAD_COLOR)
+        img = Image.open(BytesIO(bytes_data)).convert("RGB")
+        mg = np.array(img) 
         query_vector = extract_features(preprocess_image(img))
 
 # ---------------- SELECT IMAGE FROM DATASET ----------------
