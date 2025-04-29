@@ -4,6 +4,7 @@ import numpy as np
 import os
 import json
 import random
+from io import BytesIO
 from PIL import Image
 from utils.preprocessing import preprocess_image
 from utils.features import extract_features
