@@ -322,9 +322,15 @@ else:
                         st.markdown("---")            
     
     # ---------------- LOAD IMAGE FEATURES ----------------
-    df = pd.read_pickle("models/image_features.pkl")
-    image_paths = list(df["image_path"])
-   
+    #df = pd.read_pickle("models/image_features.pkl")
+    #image_paths = list(df["image_path"])
+    # Collect image paths directly from folder
+    image_paths = []
+    for root, _, files in os.walk("images/image"):
+       for file in files:
+          if file.lower().endswith((".jpg", ".jpeg", ".png")):
+             image_paths.append(os.path.join(root, file))
+
     #image_paths = "images/image"
 
     # ---------------- FILTERS ----------------
@@ -352,7 +358,7 @@ else:
 # ---------------- SHOW RECOMMENDATIONS ----------------
     if query_vector is not None:
         with st.spinner("Finding similar outfits..."):
-            results = get_similar_images(query_vector, df)
+            #results = get_similar_images(query_vector, df)
         st.subheader("🎯 Similar Recommendations")
         rec_cols = st.columns(5)
         for i, (_, row) in enumerate(results.iterrows()):
