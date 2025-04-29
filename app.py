@@ -357,7 +357,7 @@ else:
 
 # ---------------- SHOW RECOMMENDATIONS ----------------
     if query_vector is not None:
-        with st.spinner("Finding similar outfits..."):
+        #with st.spinner("Finding similar outfits..."):
             #results = get_similar_images(query_vector, df)
         st.subheader("🎯 Similar Recommendations")
         rec_cols = st.columns(5)
