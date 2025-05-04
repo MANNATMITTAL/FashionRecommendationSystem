@@ -4,7 +4,7 @@ import subprocess
 # Step 1: Check if models/image_features.pkl exists
 if not os.path.exists("models/image_features.pkl"):
     print("Building dataset...")
-    subprocess.run(["python", "build_dataset.py"])
+    #subprocess.run(["python", "build_dataset.py"])
 else:
     print("Dataset already built. Skipping build_dataset.py...")
 
