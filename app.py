@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import cv2
 import os
 import json
 import random
@@ -112,6 +113,7 @@ if not st.session_state.logged_in:
         
         # Display cycling images
         image_paths = "images/image"
+        #mage_folder = "images\image"
         if os.path.exists(image_paths):
             # Find all cuisine folders
             image_folders = [f for f in os.listdir(image_paths) if os.path.isdir(os.path.join(image_paths, f))]
@@ -324,8 +326,6 @@ else:
     # ---------------- LOAD IMAGE FEATURES ----------------
     df = pd.read_pickle("models/image_features.pkl")
     image_paths = list(df["image_path"])
-   
-    #image_paths = "images/image"
 
     # ---------------- FILTERS ----------------
     if category_filter != "All":
@@ -378,9 +378,7 @@ else:
                 if st.button("Select", key=f"select_{start+i}"):
                     st.session_state.selected_index = start + i
                 st.image(path, use_column_width=True)
-                
-            else:
-                st.warning(f"Image not found: {path}")
+
 
 
 # ---------------- HIDE WARNINGS ----------------
