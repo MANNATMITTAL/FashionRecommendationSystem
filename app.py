@@ -305,13 +305,13 @@ else:
                         outfit = df[df['image_path'] == name]
                         
                             
-                            # Option to remove bookmark
-                            if st.button(f"❌ Remove", key=f"remove_{i}"):
-                                user_bookmarks.remove(path)
-                                bookmarks[st.session_state.username] = user_bookmarks
-                                save_bookmarks(bookmarks)
-                                st.success(f"Removed from bookmarks!")
-                                st.experimental_rerun()
+                        # Option to remove bookmark
+                        if st.button(f"❌ Remove", key=f"remove_{i}"):
+                            user_bookmarks.remove(path)
+                            bookmarks[st.session_state.username] = user_bookmarks
+                            save_bookmarks(bookmarks)
+                            st.success(f"Removed from bookmarks!")
+                            st.experimental_rerun()
                         else:
                             st.markdown(f"*Outfit details not available*")
                         
