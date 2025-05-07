@@ -1,4 +1,4 @@
-import cv2
+import opencv
 
 def preprocess_image(img):
     img = cv2.resize(img, (224, 224))
