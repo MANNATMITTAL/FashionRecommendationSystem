@@ -1,5 +1,5 @@
 import os
-import cv2
+from PIL import Image
 import numpy as np
 import pandas as pd
 from utils.preprocessing import preprocess_image
@@ -22,8 +22,9 @@ def main():
     records = []
 
     for img_path in image_paths:
-        img = cv2.imread(img_path)
-        if img is None:
+        try:
+            img = Image.open(img_path).convert("RGB")
+        except Exception:
             continue
 
         pre_img = preprocess_image(img)
@@ -41,3 +42,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
