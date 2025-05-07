@@ -298,24 +298,19 @@ else:
                 # Display bookmarks in a grid
                 bookmark_cols = st.columns(3)
                 
-                for i, name in enumerate(user_bookmarks):
+                for i, path in enumerate(user_bookmarks):
                     with bookmark_cols[i % 3]:
-                        st.markdown(f"### {name}")
+                        st.image(path, width=200)
                         # Try to find the outfit in the dataframe
-                        outfit = restaurant_df[restaurant_df['name'] == name]
-                        if not outfit.empty:
-                            #row = restaurant.iloc[0]
-                            st.markdown(f"**Cuisine:** {row['Rcuisine_x']}")
-                            st.markdown(f"**Avg Rating:** {row['avg_rating']}/5")
-                            st.markdown(f"**Group Friendly:** {row['group_friendly_score']:.2f}")
-                            st.markdown(f"**Distance:** {row['distance_km']} km")
+                        outfit = df[df['image_path'] == name]
+                        
                             
                             # Option to remove bookmark
-                            if st.button(f"❌ Remove", key=f"remove_{name}"):
-                                user_bookmarks.remove(name)
+                            if st.button(f"❌ Remove", key=f"remove_{i}"):
+                                user_bookmarks.remove(path)
                                 bookmarks[st.session_state.username] = user_bookmarks
                                 save_bookmarks(bookmarks)
-                                st.success(f"Removed {name} from bookmarks!")
+                                st.success(f"Removed from bookmarks!")
                                 st.experimental_rerun()
                         else:
                             st.markdown(f"*Outfit details not available*")
