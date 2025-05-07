@@ -336,16 +336,16 @@ else:
     uploaded_file = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
     if uploaded_file:
         st.image(uploaded_file, caption="Uploaded Image", width=200)
-        bytes_data = uploaded_file.read()
-        img_arr = np.frombuffer(bytes_data, np.uint8)
-        img = cv2.imdecode(img_arr, cv2.IMREAD_COLOR)
+        img = Image.open(uploaded_file).convert("RGB")
+
         query_vector = extract_features(preprocess_image(img))
 
 # ---------------- SELECT IMAGE FROM DATASET ----------------
     if st.session_state.selected_index is not None:
         selected_image_path = image_paths[st.session_state.selected_index]
         st.image(selected_image_path, caption="Selected Image", width=200)
-        img = cv2.imread(selected_image_path)
+        img = Image.open(selected_image_path).convert("RGB")
+
         query_vector = extract_features(preprocess_image(img))
 
 # ---------------- SHOW RECOMMENDATIONS ----------------
