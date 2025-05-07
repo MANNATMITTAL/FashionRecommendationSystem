@@ -286,25 +286,31 @@ else:
                     st.markdown(f"**Preferred Colour:** {user_data['colour']}")
                    
         # Bookmarks Tab
+        # Bookmarks Tab
         with bookmarks_tab:
             st.header("🔖 Your Bookmarked Outfits")
-            
+
             bookmarks = load_bookmarks()
             user_bookmarks = bookmarks.get(st.session_state.username, [])
-            
+
             if not user_bookmarks:
                 st.info("You haven't bookmarked any outfit yet.")
             else:
                 # Display bookmarks in a grid
                 bookmark_cols = st.columns(3)
-                
+
                 for i, path in enumerate(user_bookmarks):
                     with bookmark_cols[i % 3]:
                         st.image(path, width=200)
-                        # Try to find the outfit in the dataframe
-                        outfit = df[df['image_path'] == name]
-                        
-                            
+
+                        # Optional: Find the outfit in the DataFrame (for any metadata)
+                        outfit = df[df['image_path'] == path]
+                
+                        if not outfit.empty:
+                            st.markdown(f"**Path:** `{path}`")
+                        else:
+                            st.markdown(f"*Outfit details not available*")
+
                         # Option to remove bookmark
                         if st.button(f"❌ Remove", key=f"remove_{i}"):
                             user_bookmarks.remove(path)
@@ -312,10 +318,9 @@ else:
                             save_bookmarks(bookmarks)
                             st.success(f"Removed from bookmarks!")
                             st.experimental_rerun()
-                        else:
-                            st.markdown(f"*Outfit details not available*")
-                        
-                        st.markdown("---")            
+
+                        st.markdown("---")
+    
     
     # ---------------- LOAD IMAGE FEATURES ----------------
     df = pd.read_pickle("models/image_features.pkl")
